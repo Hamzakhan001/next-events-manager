@@ -34,6 +34,7 @@ const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     const { slug } = await params
+    let event;
     const request = await fetch(`${BASE_URL}/api/events/${slug}`);
     const { event: { description, image, overview, date, time, location, agenda, mode, audience, tags, organizer } } = await request.json()
 
@@ -90,7 +91,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                             <p className="text-sm">Be first to book your spot</p>
                         )}
 
-                        <BookEvent />
+                        <BookEvent eventId={event.id} slug={event.slug} />
 
                     </div>
                 </aside>
