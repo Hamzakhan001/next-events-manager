@@ -37,6 +37,8 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
         return notFound()
     }
 
+    const Bookings = 5
+
     return (
         <section id="event">
             <div className="header">
@@ -73,7 +75,19 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
 
                 {/* Right side- Booking Form */}
                 <aside className="booking">
-                    <p className="text-lg font-semibold">Book Event</p>
+                    <div className="signup-card">
+                        <h2>Book Your Spot</h2>
+                        {Bookings > 0 ? (
+                            <p className="text-sm">
+                                Join {Bookings} people who are already coming
+                            </p>
+                        ) : (
+                            <p className="text-sm">Be first to book your spot</p>
+                        )}
+
+                        <BookEvent />
+
+                    </div>
                 </aside>
             </div>
         </section>
